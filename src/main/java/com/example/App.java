@@ -54,7 +54,7 @@ public class App
 
         System.out.println(dif2);
 
-
+        // {1,2} × {3,4} = {(1,3), (1,4), (2,3), (2,4)} produto cartesiano
         Set<Integer> s5 = new HashSet<>();
         s5.add(1);
         s5.add(2);
@@ -74,7 +74,26 @@ public class App
 
         System.out.println(prod);
 
+        // 2 ^ {1,2} = {∅,{1},{2},{1,2}} ou seja, o conjunto de todos os subconjuntos de um conjunto
+        Set<Integer> s7 = new HashSet<>();
+        s7.add(1);
+        s7.add(2);
 
-        
+        Set<Set<Integer>> sub = new HashSet<>();
+        sub.add(new HashSet<>());
+        Set<Set<Integer>> lote = new HashSet<>();
+        for (int i = 0; i < Math.pow(2, s7.size()); i++) {
+            for (Set<Integer> s: sub) {
+                lote = new HashSet<>();
+                for (Integer e : s7) {
+                    HashSet<Integer> ss = new HashSet<>(s);
+                    ss.add(e);
+                    lote.add(ss);
+                }
+            }
+            sub.addAll(lote);
+        }
+        System.out.println(sub);
+
     }
 }
